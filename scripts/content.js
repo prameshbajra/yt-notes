@@ -3,6 +3,7 @@ const TRACK_ID = 'video-notes-track';
 const TOOLTIP_ID = 'video-notes-tooltip';
 const PREVIEW_TOOLTIP_ID = 'video-notes-preview';
 const NOTES_STORAGE_KEY = 'videoNotes:notes';
+const METADATA_STORAGE_KEY = 'videoNotes:metadata';
 const OBSERVER_OPTIONS = { childList: true, subtree: true };
 const VIDEO_EVENTS = ['loadedmetadata', 'durationchange'];
 const TOOLTIP_OFFSET = 12;
@@ -769,6 +770,86 @@ const saveStoredNotes = (payload) => {
     });
 };
 
+const getStoredMetadata = () => {
+    const storage = getStorageArea();
+    if (!storage) {
+        return Promise.resolve({});
+    }
+
+    return new Promise((resolve) => {
+        storage.get([METADATA_STORAGE_KEY], (result) => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+                resolve({});
+                return;
+            }
+            resolve(result[METADATA_STORAGE_KEY] || {});
+        });
+    });
+};
+
+const saveStoredMetadata = (payload) => {
+    const storage = getStorageArea();
+    if (!storage) {
+        return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+        storage.set({ [METADATA_STORAGE_KEY]: payload }, () => {
+            resolve();
+        });
+    });
+};
+
+const persistVideoMetadata = async (videoId, metadata) => {
+    if (!videoId) {
+        return;
+    }
+
+    const allMetadata = await getStoredMetadata();
+
+    if (!metadata) {
+        if (Object.prototype.hasOwnProperty.call(allMetadata, videoId)) {
+            delete allMetadata[videoId];
+            await saveStoredMetadata(allMetadata);
+        }
+        return;
+    }
+
+    const existing = allMetadata[videoId] || {};
+    const merged = {
+        ...existing,
+        ...metadata
+    };
+
+    const keys = Object.keys(metadata);
+    const hasChanges = keys.some((key) => existing[key] !== metadata[key]);
+    if (!hasChanges) {
+        return;
+    }
+
+    merged.updatedAt = Date.now();
+    allMetadata[videoId] = merged;
+    await saveStoredMetadata(allMetadata);
+};
+
+const getVideoTitleText = () => {
+    const titleElement = document.querySelector('#primary-inner ytd-watch-metadata #title');
+    if (titleElement && typeof titleElement.textContent === 'string') {
+        const text = titleElement.textContent.trim();
+        if (text) {
+            return text;
+        }
+    }
+
+    const documentTitle = typeof document !== 'undefined' && document.title ? document.title : '';
+    const cleaned = documentTitle.replace(/\s+-\s+YouTube$/, '').trim();
+    if (cleaned) {
+        return cleaned;
+    }
+
+    return documentTitle.trim() || 'Untitled video';
+};
+
 const loadNotesForVideo = async (videoId) => {
     if (!videoId) {
         return [];
@@ -792,6 +873,16 @@ const persistNotesForVideo = async (videoId, notes) => {
     const allNotes = await getStoredNotes();
     allNotes[videoId] = notes;
     await saveStoredNotes(allNotes);
+
+    if (!Array.isArray(notes) || notes.length === 0) {
+        await persistVideoMetadata(videoId, null);
+        return;
+    }
+
+    await persistVideoMetadata(videoId, {
+        title: getVideoTitleText(),
+        noteCount: notes.length
+    });
 };
 
 const generateNoteId = () => {
@@ -1368,6 +1459,14 @@ const refreshNotesForCurrentVideo = async () => {
 
     state.videoId = videoId;
     state.notes = notes;
+    if (notes.length > 0) {
+        await persistVideoMetadata(videoId, {
+            title: getVideoTitleText(),
+            noteCount: notes.length
+        });
+    } else {
+        await persistVideoMetadata(videoId, null);
+    }
     assignVideoElement();
     renderNotesTrack();
     closeTooltip();
