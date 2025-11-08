@@ -1,4 +1,4 @@
-# Video Notes
+# Youtube Video Notes: Browser Extension
 
 Video Notes is a Manifest V3 Chrome extension that lets you capture lightweight, timestamped annotations while watching YouTube. The extension injects a compact notes surface directly above the video title, renders every note as an interactive marker on a timeline, and ships with a popup UI for browsing and searching through everything you've saved.
 
@@ -96,22 +96,8 @@ The file currently exists as a placeholder to satisfy MV3’s background entry r
 - Notes persist per video ID, so refreshing or returning later keeps the timeline intact.
 - Open the browser action popup to browse everything you've captured. Search matches both video titles and note text; select a result to open the video in a new tab at the recorded second.
 
-## Testing & QA
-Manual validation (run on both light and dark themes):
-- Timeline renders above the title once the player loads, and remains after navigating between videos without refreshing.
-- Tooltip opens/closes correctly, `Alt + N` works when focus is outside inputs, and playback resumes after closing.
-- Creating a note adds a dot, saving multiple notes keeps them sorted, and deleting removes the dot immediately.
-- Hover previews show the latest text, and clicking dots seeks the video accurately.
-- Refreshing the page retains all notes; chrome popup lists the corresponding video with accurate counts.
-- Using the popup search filters the list, and clicking any note opens a new tab at the right timestamp.
-
 ## Contributing
 - Follow the existing small, imperative commit format (optionally prefixed with `Feature:`/`Fix:`) and squash WIP commits before opening PRs.
 - Each PR should describe the user-facing outcome, highlight any manifest/permission changes, and include a short manual test plan similar to the checklist above (plus screenshots for UI tweaks).
 - Reuse helper utilities (`createButton`, `applyStyles`, storage helpers) instead of inlining DOM/CSS, and keep DOM IDs / storage keys in uppercase snake case for consistency.
 - Before submitting changes, run `npx web-ext lint --source-dir .` and, if formatting drift is suspected, `npx prettier@latest --write scripts/**/*.js background.js`.
-
-## Future Ideas
-- Populate the background worker with features such as context-menu note creation or scheduled reminders.
-- Sync across devices via `chrome.storage.sync` or a backend service.
-- Add automated UI tests (Playwright is a good fit) using mocked YouTube fixtures under a `tests/` directory.
