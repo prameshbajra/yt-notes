@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Video Notes Privacy Policy</title>
+        <meta name="description" content="Formal privacy policy for the Video Notes Chrome extension covering data processing, storage, permissions, and user rights." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://prameshbajra.github.io/video-notes/privacy" />
+        <meta property="og:title" content="Video Notes Privacy Policy" />
+        <meta property="og:description" content="Learn how the Video Notes Chrome extension operates entirely on-device, which permissions are requested, and how to exercise your privacy choices." />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://prameshbajra.github.io/video-notes/privacy" />
+        <meta property="og:site_name" content="Video Notes" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Video Notes Privacy Policy" />
+        <meta name="twitter:description" content="Video Notes stores your YouTube notes locally and never transmits them to external services." />
+        <meta name="theme-color" content="#040714" />
+        <link rel="stylesheet" href="index.css" />
+    </head>
+
+    <body>
+        <div class="background-glow" aria-hidden="true"></div>
+        <header class="hero" id="top">
+            <nav class="site-nav" data-nav aria-label="Primary navigation">
+                <a class="logo" href="index.html#home">Video Notes</a>
+                <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-links" id="primary-nav">
+                    <a href="index.html#workflow">Workflow</a>
+                    <a href="index.html#storage">Storage</a>
+                    <a href="index.html#popup">Popup</a>
+                    <a href="index.html#open-source">Open source</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="privacy.html" aria-current="page">Privacy</a>
+                    <a class="cta-link" href="https://github.com/prameshbajra/yt-notes" rel="noreferrer noopener">
+                        View on GitHub
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="policy-hero container">
+                <p class="eyebrow">Privacy policy</p>
+                <h1>Video Notes Privacy Policy</h1>
+                <p>
+                    This Privacy Policy explains how Video Notes, a Chrome extension developed and published by
+                    Pramesh Bajracharya, handles information relating to your use of the extension.
+                    The policy is intended to satisfy Chrome Web Store disclosure requirements and reassure end users that their notes remain private.
+                </p>
+                <p class="policy-meta">Effective date: March 28, 2024 &middot; Last reviewed: March 28, 2024</p>
+            </section>
+
+            <section class="policy-layout">
+                <div class="container policy-stack">
+                    <article class="policy-card">
+                        <h2>1. Scope and data controller</h2>
+                        <p>
+                            This policy governs information collected, stored, or otherwise processed by the Video Notes Chrome extension.
+                            The extension operates solely within your browser to augment youtube.com/watch pages and does not rely on external infrastructure.
+                            For the purpose of applicable privacy regulations, the data controller is Pramesh Bajracharya
+                            (<a href="https://prameshbajra.github.io" rel="noreferrer noopener">prameshbajra.github.io</a>).
+                        </p>
+                        <dl class="policy-definition">
+                            <dt>Contact</dt>
+                            <dd>
+                                Privacy inquiries can be submitted through the public issue tracker at
+                                <a href="https://github.com/prameshbajra/yt-notes/issues" rel="noreferrer noopener">github.com/prameshbajra/yt-notes/issues</a>
+                                or via the contact details listed on the website above.
+                            </dd>
+                        </dl>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>2. Information processed by the extension</h2>
+                        <p>
+                            Video Notes is designed to function without gathering personal data or transmitting content away from the device.
+                            The extension processes only the information required to save and surface your notes:
+                        </p>
+                        <ul>
+                            <li>The free-form text you enter into the Video Notes workspace.</li>
+                            <li>Timestamps associated with the active YouTube video in order to place markers on the timeline.</li>
+                            <li>The YouTube video identifier, title, and locally calculated note counts to organize entries.</li>
+                        </ul>
+                        <p>
+                            The extension does not request or infer usernames, email addresses, browsing history, or analytics identifiers.
+                        </p>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>3. Storage location and retention</h2>
+                        <p>
+                            All information described above remains on the device within <code>chrome.storage.local</code>
+                            under the keys <code>videoNotes:notes</code> and <code>videoNotes:metadata</code>.
+                            Chrome synchronizes nothing from these keys to Google servers, and no remote databases are used.
+                        </p>
+                        <p>
+                            Data persists until you delete it through the extension, clear browser storage, or uninstall the extension.
+                            No automated retention policies, analytics, or log files are created outside of Chrome's own diagnostics.
+                        </p>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>4. Chrome permissions and their purpose</h2>
+                        <p>
+                            Video Notes requests the minimum set of permissions needed to operate:
+                        </p>
+                        <ul>
+                            <li><strong>storage</strong> &mdash; allows the extension to store the notes you create in <code>chrome.storage.local</code>.</li>
+                            <li><strong>activeTab</strong> &mdash; enables the popup to access metadata about the currently focused YouTube tab so it can load relevant notes.</li>
+                            <li><strong>scripting</strong> &mdash; injects the content script that renders the inline workspace on youtube.com/watch pages.</li>
+                        </ul>
+                        <p>
+                            These permissions do not provide the extension with the ability to read data on non-YouTube sites, collect browsing history, or transmit any note content beyond your browser.
+                        </p>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>5. Network access, disclosures, and third parties</h2>
+                        <p>
+                            The extension does not initiate outbound network requests other than what is necessary for YouTube to play video content in your tab.
+                            No analytics SDKs, advertising services, or third-party processors are bundled with the codebase.
+                            Consequently, Video Notes does not sell, trade, or disclose your information to anyone.
+                        </p>
+                        <p>
+                            If future versions introduce optional features that rely on a network service, those changes will be documented,
+                            made opt-in, and reflected in an updated version of this policy.
+                        </p>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>6. Security measures</h2>
+                        <p>
+                            Because data never leaves your browser, security focuses on minimizing attack surface:
+                        </p>
+                        <ul>
+                            <li>The extension injects lightweight, auditable scripts based on open-source code published at <a href="https://github.com/prameshbajra/yt-notes" rel="noreferrer noopener">github.com/prameshbajra/yt-notes</a>.</li>
+                            <li>No remote code execution, evaluation of third-party scripts, or dynamic module loading occurs at runtime.</li>
+                            <li>Patches are distributed through the Chrome Web Store update channel to ensure authenticity.</li>
+                        </ul>
+                        <p>
+                            Users remain responsible for protecting their own devices with appropriate operating-system level safeguards.
+                        </p>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>7. User controls and data subject rights</h2>
+                        <p>
+                            You are fully in control of the content stored by Video Notes. Available controls include:
+                        </p>
+                        <ul>
+                            <li>Using the export option in the popup dashboard to download a JSON backup of all notes.</li>
+                            <li>Importing a trusted backup file to restore data on a different profile or machine.</li>
+                            <li>Deleting individual notes or clearing all data through Chrome's site settings or by uninstalling the extension.</li>
+                        </ul>
+                        <p>
+                            Because the extension does not maintain server-side records, formal data access or deletion requests beyond your browser are unnecessary—the data resides solely with you.
+                        </p>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>8. Children's privacy</h2>
+                        <p>
+                            Video Notes is intended for general productivity use and is not directed at children under 13.
+                            The extension does not knowingly collect personal data from children, and it stores only what the user themselves choose to enter.
+                        </p>
+                    </article>
+
+                    <article class="policy-card">
+                        <h2>9. Changes to this policy</h2>
+                        <p>
+                            Any updates to this Privacy Policy will be posted on this page with a new effective date.
+                            Material updates will also be noted in the project README and Chrome Web Store listing where applicable.
+                            Continued use of the extension after an update constitutes acceptance of the revised terms.
+                        </p>
+                        <p>
+                            Questions about this document can be directed through the repository issue tracker or the contact details noted above.
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-content">
+                <p>Video Notes &mdash; privacy-first annotations for every YouTube session.</p>
+                <a href="index.html" rel="noreferrer noopener">
+                    Back to product page
+                </a>
+                <a href="privacy.html" aria-current="page">
+                    Privacy policy
+                </a>
+                <a href="https://github.com/prameshbajra/yt-notes" rel="noreferrer noopener">
+                    View source
+                </a>
+            </div>
+        </footer>
+        <script src="index.js" type="module"></script>
+    </body>
+
+</html>

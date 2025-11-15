@@ -314,6 +314,73 @@ h3 {
   padding: 4rem 0;
 }
 
+.policy-hero {
+  padding: 4rem 0 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.policy-hero h1 {
+  margin-bottom: 1rem;
+}
+
+.policy-meta {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.policy-layout {
+  padding: 3rem 0 5rem;
+}
+
+.policy-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.policy-card {
+  padding: 2rem;
+  border-radius: 1.25rem;
+  background: rgba(10, 15, 30, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 15px 35px rgba(4, 5, 16, 0.5);
+}
+
+.policy-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.policy-card p {
+  margin: 0.5rem 0;
+}
+
+.policy-card ul {
+  margin: 0.75rem 0 0 1.5rem;
+  color: var(--text-muted);
+}
+
+.policy-card li + li {
+  margin-top: 0.35rem;
+}
+
+.policy-definition {
+  display: grid;
+  grid-template-columns: minmax(120px, 200px) 1fr;
+  gap: 1rem;
+  margin: 1rem 0 0;
+}
+
+.policy-definition dt {
+  font-weight: 600;
+}
+
+.policy-definition dd {
+  margin: 0;
+  color: var(--text-muted);
+}
+
 .section-heading {
   max-width: 720px;
   margin-bottom: 2.5rem;
@@ -541,6 +608,14 @@ h3 {
 
   .section.highlight {
     padding: 2rem;
+  }
+
+  .policy-card {
+    padding: 1.5rem;
+  }
+
+  .policy-definition {
+    grid-template-columns: 1fr;
   }
 
   .workflow-steps li {
