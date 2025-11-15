@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Video Notes for YouTube</title>
+        <meta name="description"
+            content="Video Notes is a Chrome extension that captures timestamped ideas right on YouTube. Learn how the inline workspace, timeline, and popup dashboard keep every insight within reach." />
+        <meta name="keywords" content="YouTube notes, timestamped notes, Chrome extension, productivity, inline workspace" />
+        <meta name="author" content="Video Notes" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://prameshbajra.github.io/video-notes/landing/" />
+        <meta property="og:title" content="Video Notes for YouTube" />
+        <meta property="og:description"
+            content="Capture timestamped ideas without leaving YouTube. Pause playback, jot notes inline, and reopen every insight from a searchable popup." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://prameshbajra.github.io/video-notes/landing/" />
+        <meta property="og:site_name" content="Video Notes" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image" content="https://prameshbajra.github.io/video-notes/landing/social-preview.svg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Video Notes interface layered on top of YouTube" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Video Notes for YouTube" />
+        <meta name="twitter:description" content="Take timestamped notes inside YouTube, organize everything offline, and search from a popup dashboard." />
+        <meta name="twitter:image" content="https://prameshbajra.github.io/video-notes/landing/social-preview.svg" />
+        <meta name="twitter:image:alt" content="Video Notes inline workspace preview over a mock YouTube player" />
+        <meta name="theme-color" content="#040714" />
+        <link rel="stylesheet" href="index.css" />
+        <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Video Notes for YouTube",
+        "operatingSystem": "Chrome, Edge, Brave",
+        "applicationCategory": "ProductivityApplication",
+        "description": "Video Notes injects an inline workspace on YouTube so you can capture timestamped thoughts, pause playback while typing, and revisit everything from a searchable popup.",
+        "image": "https://prameshbajra.github.io/video-notes/landing/social-preview.svg",
+        "url": "https://prameshbajra.github.io/video-notes/landing/",
+        "creator": {
+          "@type": "Organization",
+          "name": "Video Notes"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    </head>
+
+    <body>
+        <div class="background-glow" aria-hidden="true"></div>
+        <header class="hero" id="home">
+            <nav class="site-nav" data-nav aria-label="Primary navigation">
+                <a class="logo" href="#home">Video Notes</a>
+                <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-links" id="primary-nav">
+                    <a href="#workflow">Workflow</a>
+                    <a href="#storage">Storage</a>
+                    <a href="#popup">Popup</a>
+                    <a href="#open-source">Open source</a>
+                    <a href="#faq">FAQ</a>
+                    <a class="cta-link" href="https://github.com/prameshbajra/yt-notes" rel="noreferrer noopener">
+                        View on GitHub
+                    </a>
+                </div>
+            </nav>
+            <div class="hero-inner container">
+                <div class="hero-copy">
+                    <h1>Remember every insight without leaving YouTube.</h1>
+                    <p class="lead">
+                        Video Notes injects a lightweight workspace above the video title,
+                        pauses playback when you jot something down, and pins every thought
+                        to an interactive timeline so you can jump back instantly.
+                    </p>
+                    <p>
+                        Perfect for capturing ideas, notes, and action items while watching
+                        videos.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="#download">Install extension</a>
+                    </div>
+                    <div class="hero-badges">
+                        <span class="chip">Works on youtube.com/watch</span>
+                        <span class="chip">Alt/Option + N shortcut</span>
+                        <span class="chip">Auto dark & light theming</span>
+                        <span class="chip">Notes stored offline </span>
+                    </div>
+                </div>
+                <div class="hero-media" aria-hidden="true">
+                    <div class="mock-player">
+                        <div class="mock-header">
+                            <div class="mock-title-bar"></div>
+                            <div class="mock-controls">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="mock-toolbar">
+                            <div class="mock-logo">Video Notes</div>
+                            <button class="mock-button">+ Add note</button>
+                        </div>
+                        <div class="mock-note">
+                            <div class="mock-note-time">02:41</div>
+                            <div>
+                                <p class="mock-note-title">Key insight captured</p>
+                                <p class="mock-note-text">
+                                    Playback pauses while you type, then resumes automatically.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mock-track">
+                            <span style="left: 10%"></span>
+                            <span style="left: 28%"></span>
+                            <span style="left: 55%"></span>
+                            <span style="left: 80%"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <section id="workflow" class="section highlight">
+                <div class="section-heading">
+                    <p class="eyebrow">How it fits in</p>
+                    <h2>Fast capture without leaving flow.</h2>
+                </div>
+                <ol class="workflow-steps">
+                    <li>
+                        Open any video on <strong>youtube.com/watch</strong>. Video Notes
+                        injects itself above the title and binds to the active player even
+                        as YouTube navigates between videos.
+                    </li>
+                    <li>
+                        Tap <strong>+ Add note</strong> or press <strong>Alt + N</strong>.
+                        Playback pauses automatically so you can type, or delete
+                        without missing a beat.
+                    </li>
+                    <li>
+                        Hover and click markers along the timeline or use the popup search
+                        to reopen everything you’ve captured, sorted by timestamp.
+                    </li>
+                </ol>
+            </section>
+
+            <section id="storage" class="section split">
+                <div class="split-copy">
+                    <p class="eyebrow">Storage model</p>
+                    <h2>Completely offline - with export and import feature</h2>
+                    <p>
+                        Video Notes runs 100% offline. Everything is written to
+                        <code>chrome.storage.local</code>, split across
+                        <code>videoNotes:notes</code> and <code>videoNotes:metadata</code>,
+                        so your highlights never leave the device yet stay instantly
+                        available to both the content script and popup.
+                    </p>
+                    <ul class="checklist">
+                        <li>Offline-first: no sync servers or network permissions</li>
+                        <li>Video titles & counts for lightning-fast summaries</li>
+                        <li>Automatic refresh whenever local data changes</li>
+                    </ul>
+                </div>
+                <div class="split-panel" aria-hidden="true">
+                    <pre class="code-block">
+                        {
+                        "videoNotes:notes": {
+                        "dQw4w9WgXcQ": [
+                        {
+                        "timestamp": 161.23,
+                        "text": "Hook enters early",
+                        "updatedAt": 1698889999999
+                        }
+                        ]
+                        },
+                        "videoNotes:metadata": {
+                        "dQw4w9WgXcQ": {
+                        "title": "Creator Deep Dive",
+                        "noteCount": 4
+                        }
+                        }
+                        }
+                    </pre>
+                </div>
+            </section>
+
+            <section id="popup" class="section panel">
+                <div class="panel-copy">
+                    <p class="eyebrow">Popup dashboard</p>
+                    <h2>Search across everything you’ve stored.</h2>
+                    <p>
+                        The popup UI (pure HTML/CSS/JS) lists all your notes across videos, with timestamps
+                        that open the video in a new tab right where you left off. A built-in search
+                        field filters results as you type, so you can find that one insight.
+                    </p>
+                </div>
+                <div class="panel-visual" aria-hidden="true">
+                    <div class="popup-mock">
+                        <div class="popup-header">
+                            <div>Video Notes</div>
+                            <div class="popup-pill">Search ready</div>
+                        </div>
+                        <div class="popup-search"></div>
+                        <div class="popup-card">
+                            <div class="popup-title">
+                                <strong>Deep Learning Walkthrough</strong>
+                                <span>3 notes</span>
+                            </div>
+                            <ul>
+                                <li>
+                                    01:12 &mdash; “Define loss function”
+                                </li>
+                                <li>
+                                    04:48 &mdash; “Timeline markers stay in sync”
+                                </li>
+                                <li>
+                                    08:10 &mdash; “Open in new tab at timestamp”
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="open-source" class="section highlight">
+                <div class="section-heading">
+                    <p class="eyebrow">Open source</p>
+                    <h2>Built in the open so you can shape it.</h2>
+                </div>
+                <p>
+                    Video Notes is fully open source on GitHub. If you spot a bug, want to polish
+                    the UI, or have a feature idea, you can dive into the repository, open an issue,
+                    or send a pull request.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="https://github.com/prameshbajra/yt-notes" rel="noreferrer noopener">
+                        Explore the code
+                    </a>
+                </div>
+            </section>
+
+            <section id="faq" class="section faq-section">
+                <div class="section-heading">
+                    <p class="eyebrow">Answers in seconds</p>
+                    <h2>Video Notes at a glance.</h2>
+                </div>
+                <div class="faq-grid">
+                    <article class="faq-item">
+                        <h3>Does Video Notes work offline?</h3>
+                        <p>
+                            Yes. Every note and bit of metadata lives in
+                            <code>chrome.storage.local</code>, so your research stays private
+                            and accessible.
+                        </p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Can I export or import my notes?</h3>
+                        <p>
+                            The popup dashboard includes export and import controls under settings allowing you to backup and import notes between browsers or devices.
+                        </p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Will it slow down YouTube?</h3>
+                        <p>
+                            Video Notes injects lightweight HTML and listens for navigation
+                            events, so it adds virtually no load time and never touches the
+                            video stream itself.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="download" class="section cta-section">
+                <div class="cta-card">
+                    <p class="eyebrow">Ready when you are</p>
+                    <h2>Install once, capture notes on every video.</h2>
+                    <p>
+                        Add the Chrome extension (or build locally) in under a minute. No
+                        accounts, no servers, just a focused workspace above your favorite
+                        videos.
+                    </p>
+                    <div class="cta-actions">
+                        <a class="button primary" href="https://github.com/prameshbajra/yt-notes#install" rel="noreferrer noopener">
+                            Install from GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-content">
+                <p>Video Notes &mdash; lightweight annotations for every YouTube moment.</p>
+                <a href="https://github.com/prameshbajra/yt-notes" rel="noreferrer noopener">
+                    View source
+                </a>
+                <a href="https://prameshbajra.github.io" rel="noreferrer noopener">
+                    Find me here: prameshbajra.github.io
+                </a>
+            </div>
+        </footer>
+        <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Video Notes work offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Video Notes stores every timestamped idea in chrome.storage.local so your research stays private and accessible even when YouTube is offline."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I export or import my notes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The popup dashboard includes export and import controls under settings allowing you to backup and import notes between browsers or devices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will Video Notes slow down YouTube?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Video Notes injects lightweight HTML and listens for navigation events, so it adds virtually no load time and never touches the video stream itself."
+            }
+          }
+        ]
+      }
+    </script>
+        <script src="index.js" type="module"></script>
+    </body>
+
+</html>
