@@ -1,6 +1,6 @@
 # Youtube Video Notes: Browser Extension
 
-Video Notes is a Manifest V3 Chrome extension that lets you capture lightweight, timestamped annotations while watching YouTube. The extension injects a compact notes surface directly above the video title, renders every note as an interactive marker on a timeline, and ships with a popup UI for browsing and searching through everything you've saved.
+Video Notes is a browser extension (Chromium + Firefox) that lets you capture lightweight, timestamped annotations while watching YouTube. The extension injects a compact notes surface directly above the video title, renders every note as an interactive marker on a timeline, and ships with a popup UI for browsing and searching through everything you've saved.
 
 ## Features
 - Inline notes workspace on every `youtube.com/watch` page with an `+ Add note` button and keyboard shortcut (`Alt + N`) that pauses playback while you type.
@@ -69,14 +69,14 @@ The project uses `chrome.storage.local`, so the data stays on-device but is inst
 The file currently exists as a placeholder to satisfy MV3’s background entry requirement; add future automation (context menu actions, sync, alarms) here.
 
 ## Setup & Development
-1. **Install dependencies:** none beyond a Chromium-based browser and Node (only needed for the optional dev tooling below).
+1. **Install dependencies:** none beyond a modern browser (Chromium or Firefox) and Node (only needed for the optional dev tooling below).
 2. **Load as an unpacked extension:**
-   - Navigate to `chrome://extensions`.
-   - Toggle **Developer mode**.
-   - Click **Load unpacked** and select this repository folder.
+   - **Chromium (Chrome/Edge/Brave):** open `chrome://extensions`, toggle **Developer mode**, click **Load unpacked**, and select this repository folder.
+   - **Firefox:** open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on**, and pick `manifest.json` inside the `extension` directory. The manifest declares `browser_specific_settings.gecko.id` (`video-notes@prameshbajra`); change it if you want a different ID before submitting to AMO.
 3. **Faster feedback loop (optional):**
    ```bash
    npx web-ext run --source-dir . --target chromium
+   npx web-ext run --source-dir . --target firefox-desktop
    ```
 4. **Manifest linting before distribution:**
    ```bash
