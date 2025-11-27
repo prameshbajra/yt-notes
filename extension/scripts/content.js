@@ -1449,11 +1449,6 @@ const toggleZenMode = (enabled) => {
                 margin-right: auto !important;
                 padding: 0 24px !important;
             }
-            
-            html.video-notes-zen #columns {
-                max-width: 1200px !important;
-                margin: 0 auto !important;
-            }
         `;
         document.head.appendChild(style);
     }
