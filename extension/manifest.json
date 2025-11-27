@@ -18,7 +18,20 @@
     },
     "background": {
         "service_worker": "background.js",
-        "type": "module"
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "video-notes@prameshbajra",
+            "strict_min_version": "58.0",
+            "data_collection_permissions": {
+                "required": [
+                    "websiteContent"
+                ]
+            }
+        }
     },
     "permissions": [
         "storage"

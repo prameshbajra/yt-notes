@@ -973,7 +973,7 @@ const closeTooltip = () => {
         try {
             const playResult = resumeVideo.play();
             if (playResult && typeof playResult.catch === 'function') {
-                playResult.catch(() => {});
+                playResult.catch(() => { });
             }
         } catch {
             // Ignore playback errors caused by browser policies or missing user gesture.
@@ -1021,11 +1021,11 @@ const positionTooltip = (anchorCandidate) => {
     const anchorRect = reference
         ? reference.getBoundingClientRect()
         : {
-              top: containerCenterY,
-              bottom: containerCenterY,
-              left: containerCenterX,
-              width: 0
-          };
+            top: containerCenterY,
+            bottom: containerCenterY,
+            left: containerCenterX,
+            width: 0
+        };
 
     const tooltipRect = ui.tooltip.getBoundingClientRect();
 
@@ -1624,7 +1624,8 @@ const assignVideoElement = () => {
     return video;
 };
 
-const refreshNotesForCurrentVideo = async () => {
+const refreshNotesForCurrentVideo = async (options = {}) => {
+    const { forceReload = false } = options;
     const videoId = getVideoIdFromLocation();
     if (!videoId) {
         if (state.videoId !== null) {
@@ -1638,7 +1639,9 @@ const refreshNotesForCurrentVideo = async () => {
         return;
     }
 
-    if (state.videoId === videoId) {
+    const shouldReloadNotes = forceReload || state.videoId !== videoId;
+
+    if (!shouldReloadNotes) {
         assignVideoElement();
         renderNotesTrack();
         return;
@@ -1739,7 +1742,7 @@ const startObserving = () => {
 };
 
 const handleRouteChange = () => {
-    refreshNotesForCurrentVideo().catch(() => {});
+    refreshNotesForCurrentVideo().catch(() => { });
     const videoId = getVideoIdFromLocation();
     if (!videoId) {
         observer.disconnect();
@@ -1749,6 +1752,37 @@ const handleRouteChange = () => {
     if (!ensureUiReady(videoId)) {
         startObserving();
     }
+};
+
+const handleStorageChange = (changes, areaName) => {
+    if (areaName !== 'local') {
+        return;
+    }
+
+    const notesChange = changes[NOTES_STORAGE_KEY];
+    if (!notesChange) {
+        return;
+    }
+
+    const videoId = state.videoId;
+    if (!videoId) {
+        return;
+    }
+
+    const hasNew =
+        notesChange.newValue &&
+        typeof notesChange.newValue === 'object' &&
+        Object.prototype.hasOwnProperty.call(notesChange.newValue, videoId);
+    const hasOld =
+        notesChange.oldValue &&
+        typeof notesChange.oldValue === 'object' &&
+        Object.prototype.hasOwnProperty.call(notesChange.oldValue, videoId);
+
+    if (!hasNew && !hasOld) {
+        return;
+    }
+
+    refreshNotesForCurrentVideo({ forceReload: true }).catch(() => { });
 };
 
 const initialize = () => {
@@ -1771,6 +1805,10 @@ const initialize = () => {
                 if (areaName === 'local' && changes[ZEN_MODE_STORAGE_KEY]) {
                     toggleZenMode(changes[ZEN_MODE_STORAGE_KEY].newValue);
                 }
+            });
+            chrome.storage.onChanged.addListener(handleStorageChange);
+            window.addEventListener('unload', () => {
+                chrome.storage.onChanged.removeListener(handleStorageChange);
             });
         }
     }
